@@ -48,9 +48,12 @@ class WebPushChannel
 
         $response = $this->webPush->flush();
 
-        $this->deleteInvalidSubscriptions($response, $subscriptions);
+        if (is_array($response)) {
+            Log::error('Responses: ' . json_encode($response));
+            Log::error('Subscriptions: ' . json_encode($subscriptions));
+        }
 
-        return $response;
+        $this->deleteInvalidSubscriptions($response, $subscriptions);
     }
 
     /**
