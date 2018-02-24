@@ -4,7 +4,6 @@ namespace NotificationChannels\WebPush;
 
 use Minishlink\WebPush\WebPush;
 use Illuminate\Notifications\Notification;
-use Illuminate\Support\Facades\Log;
 
 class WebPushChannel
 {
@@ -47,7 +46,6 @@ class WebPushChannel
         });
 
         $response = $this->webPush->flush();
-        error_log(@json_encode($response));
 
         // $this->deleteInvalidSubscriptions($response, $subscriptions);
     }
