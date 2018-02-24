@@ -47,7 +47,7 @@ class WebPushChannel
 
         $response = $this->webPush->flush();
 
-        $this->deleteInvalidSubscriptions($response, $subscriptions);
+        // $this->deleteInvalidSubscriptions($response, $subscriptions);
     }
 
     /**
