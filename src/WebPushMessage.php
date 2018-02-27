@@ -73,6 +73,11 @@ class WebPushMessage
     protected $data;
 
     /**
+     * @var array
+     */
+    protected $options = [];
+
+    /**
      * Set the notification title.
      *
      * @param  string $value
@@ -239,6 +244,19 @@ class WebPushMessage
     }
 
     /**
+     * Set the notification options data.
+     *
+     * @param  array $value
+     * @return $this
+     */
+    public function options($value)
+    {
+        $this->options = $value;
+
+        return $this;
+    }
+
+    /**
      * Get an array representation of the message.
      *
      * @return array
@@ -259,6 +277,7 @@ class WebPushMessage
             'tag',
             'vibrate',
             'data',
+            'options',
         ])
         ->mapWithKeys(function ($option) {
             return [$option => $this->{$option}];
