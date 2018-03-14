@@ -1,4 +1,4 @@
-<?php
+x<?php
 
 namespace NotificationChannels\WebPush;
 
@@ -71,7 +71,12 @@ class WebPushChannel
 
         foreach ($response as $index => $value) {
             if (! $value['success'] && isset($subscriptions[$index])) {
-                $subscriptions[$index]->delete();
+                // Remove push data, but keep record to track unsubscribe by updated_at date
+                $subscriptions[$index]->endpoint = null;
+                $subscriptions[$index]->public_key = null;
+                $subscriptions[$index]->auth_token = null;
+                $subscriptions[$index]->save();
+                // $subscriptions[$index]->delete();
             }
         }
     }
